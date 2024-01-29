@@ -33,7 +33,10 @@ def search_user(data: str) -> str:
     """
     Поиск записи по критерию data.
     """
-    pass
+    with open(filename, 'r', encoding = 'UTF-8') as content:
+        text = content.readlines()
+        res = ([item for item in text if data.lower() in item.lower()])
+    return (''.join(res)).replace(';', ' ') if res else 'Вхождений не найдено'
 
 def check_directory(filename: str):
     if filename not in os.listdir():
@@ -60,4 +63,6 @@ while True:
         phone = input()
         add_new_user(name=user, phone=phone, filename=DATASOURCE)
     elif mode == 3:
-        pass
+        earch = input('Введите строку для поиска: ')
+        print(search_user(search, DATA_SOURCE))
+        exit()
