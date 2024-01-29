@@ -14,7 +14,10 @@ def add_new_user(name: str, phone: str, filename: str):
     """
     Добавление нового пользователя.
     """
-    pass
+    with open(filename, 'r+t', encoding='utf-8') as wrtbl:
+       #l = wrtbl.readlines()
+       lins_count = len(wrtbl.readlines())
+       wrtbl.write(f"{lins_count + 1};{name};{phone}\n")
 
 
 def read_all(filename: str) -> str:
@@ -24,7 +27,6 @@ def read_all(filename: str) -> str:
     with open(filename, 'r', encoding= 'utf-8') as data:
         resolt = data.read()
     return resolt    
-    pass
 
 
 def search_user(data: str) -> str:
@@ -54,6 +56,8 @@ while True:
     if mode == 1:
         print(read_all(DATASOURCE))
     elif mode == 2:
-        pass
+        user = input()
+        phone = input()
+        add_new_user(name=user, phone=phone, filename=DATASOURCE)
     elif mode == 3:
         pass
